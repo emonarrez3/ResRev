@@ -12,7 +12,7 @@ pip install flask_cors
 ```
 
 ## To initialize the program
-`python -m flask run`
+`flask run`
 
 ## Optional
 ### Upgrade pip to the current version
