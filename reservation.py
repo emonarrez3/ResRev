@@ -8,8 +8,49 @@ CORS(reservation)
 
 client = MongoClient('mongodb+srv://sc_delaEmi:u2JsEd0nzYssgaMd@cluster0.8qczawe.mongodb.net/test', 5000)
 db=client['test']
+reservations=client['reservations']
 
-@reservation.route('/reservation_page', methods=['POST'])
-def respage():
-    print(request.form["mydata"])
-    return render_template("./reservation.html")
+
+#Redirect to the specific restaurant
+@reservation.route('/respageBurritos', methods=['POST'])
+def respageBurritos():
+    return render_template("./reservation.html", restaurant="Burrito")
+
+@reservation.route('/respageBurger', methods=['POST'])
+def respageBurger():
+    return render_template("./reservation.html", restaurant="Burger")
+
+@reservation.route('/respageMenudo', methods=['POST'])
+def respageMenudo():
+    return render_template("./reservation.html", restaurant="Menudo")
+
+@reservation.route('/respagePizza', methods=['POST'])
+def respagePizza():
+    return render_template("./reservation.html", restaurant="Pizza")
+
+@reservation.route('/respageChinese', methods=['POST'])
+def respageChinese():
+    return render_template("./reservation.html", restaurant="Chinese")
+#-------------------------------------------------------------------------
+
+@reservation.route('/confirmationPage', methods=['POST'])
+def confirmationPage():
+    restaurantName = request.form.get('restaurantName')
+    nameReservation = request.form.get('nameInput')
+    guests = request.form.get('inputGuess')
+    times = request.form.get('seletedHour')
+    adaneeded = request.form.get('ada')
+    coments = request.form.get('comments')
+
+    print(adaneeded)
+
+    db.reservations.insert_one({
+        'restaurantName': restaurantName,
+        'reservationName': nameReservation,
+        'guests': guests,
+        'times': times,
+        'adaneeded': adaneeded,
+        'coments': coments
+    })
+
+    return render_template("./confirmationPage.html")

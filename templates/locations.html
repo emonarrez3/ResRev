@@ -24,8 +24,7 @@
                       <div class="accordion-body">
                         {{instance["description"]}} 
 
-                        <form method="post" action="{{ url_for("reservation.respage") }}">
-                          <input type="hidden" name="mydata" value={{instance["location"]}}>
+                        <form method="post" action="{{ url_for(instance["link"]) }}"  method="POST">
                           <button type="submit">Click me!</button>
                         </form>
                       
