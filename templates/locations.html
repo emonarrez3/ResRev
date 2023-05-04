@@ -11,6 +11,21 @@
 
 
     <body>
+
+      <form action="{{ url_for('restaurants.restaurant_filter') }}" method="POST">
+        <div class="form-group">
+          <label for="inputState">Filter</label>
+          <select id="filterRestaurants" name="filterRestaurants"class="form-control">
+            <option selected>Select Category</option>
+            <option>mexican</option>
+            <option>fast food</option>
+            <option>oriental</option>
+          </select>
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+
+      <br>
                 
                 <div class="accordion" id="accordionExample">
                   {% for instance in arr %}
