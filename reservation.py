@@ -35,22 +35,13 @@ def respageChinese():
 
 @reservation.route('/confirmationPage', methods=['POST'])
 def confirmationPage():
-    restaurantName = request.form.get('restaurantName')
-    nameReservation = request.form.get('nameInput')
-    guests = request.form.get('inputGuess')
-    times = request.form.get('seletedHour')
-    adaneeded = request.form.get('ada')
-    coments = request.form.get('comments')
-
-    print(adaneeded)
-
     db.reservations.insert_one({
-        'restaurantName': restaurantName,
-        'reservationName': nameReservation,
-        'guests': guests,
-        'times': times,
-        'adaneeded': adaneeded,
-        'coments': coments
+        'restaurantName': request.form.get('restaurantName'),
+        'reservationName': request.form.get('nameInput'),
+        'guests': request.form.get('inputGuess'),
+        'times': request.form.get('seletedHour'),
+        'adaneeded': request.form.get('ada'),
+        'coments': request.form.get('comments')
     })
 
     return render_template("./confirmationPage.html")
